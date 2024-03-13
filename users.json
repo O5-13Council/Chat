@@ -1,0 +1,101 @@
+[
+  {
+    "id": "h5r2-3m-tj-p6-5fw3na5tq2-vk-yq-fr-mk78cdzhrv-9z-hj-1z-wqdnot2a78-x4-4v-rf-sos9nlu38o-pj-5c-oj-0sb7oq",
+    "username": "dope",
+    "email": "912449hps@hammontonschools.org",
+    "password": "$2a$10$B.mHTaqIbFXKD5Stk7wpbuMxi18OUCEE4f5QWN7KMaE9BNmMfDVi2",
+    "name": "Bryan",
+    "staff": "ye",
+    "role": "Owner",
+    "mrlol": "na",
+    "level": "6",
+    "mute": "none",
+    "ban": "none",
+    "roomAllowed": [
+      "public",
+      "lywr-zu-56-ju-ori2qawvb3-zi-qo-8j-gq1nio1fv7-aq-9y-0h-vf244axzrh-02-3o-k1-obxk3bbx94-k3-om-vo-5hrqym:8650573",
+      "qx42-58-ar-48-yxzo0cpm8s-yg-mj-pm-qsflgnyehn-yu-fw-31-bf3h9k2b14-9n-ed-ks-s3w25alk9x-ht-b3-tf-36o1nb:8683203"
+    ]
+  },
+  {
+    "id": "nhwd-dm-p7-9d-zlywedk5eg-gy-2d-6o-bwtpeza36p-lo-z3-h7-jmn2o39m19-wl-91-7i-jhoqynha89-p4-rk-9f-0xiwqc",
+    "username": "dope-alt",
+    "email": "912449hps@hammontonschools.org",
+    "password": "$2a$10$Klx0R2ajBBM92eQ/wP1jDe6nT1n8XrkT2h.esafFsyiKoiS7xKAyS",
+    "name": "Bryan-alt",
+    "staff": "no",
+    "role": "member",
+    "mrlol": "na",
+    "level": "1",
+    "mute": "true",
+    "ban": "true",
+    "roomAllowed": [
+      "public"
+    ]
+  },
+  {
+    "id": "9p0l-2a-03-5b-uxv8t5b9dy-as-yk-vj-qqlczp761v-lx-ny-yj-0y8hktma3g-b5-63-6u-7lg9fchf2a-u7-wj-vn-brhcmu",
+    "username": "Tjthegoat",
+    "email": "915646hps@gmail.com",
+    "password": "$2a$10$OdHKWz8D7J2duxS3xKgO2.U6xbyNYvkS6lVbPt2/vcCiEEqq8WL/O",
+    "name": "Tj",
+    "staff": "ye",
+    "role": "Co-Owner",
+    "mrlol": "na",
+    "level": "6",
+    "mute": "false",
+    "ban": "false",
+    "roomAllowed": [
+      "public",
+      "uhms-5f-79-ck-ew1m8enu3m-au-fi-uz-64oyhc579e-2z-40-80-k4xgd2hbpc-qf-zg-tf-lioc01m5lo-3v-7m-an-0kja01:5454925"
+    ]
+  },
+  {
+    "id": "qbr1-k3-69-32-ase7avev92-r3-qi-ru-xkw57p2p2u-ih-jb-3r-h2a3n03nes-jx-ai-nx-cqh4dl5fi3-du-ft-kb-urj6zo",
+    "username": "Tj",
+    "email": "915646hps@gmail.com",
+    "password": "$2a$10$FIwnHvcVgiNriUQ6OQts6eNPitdHPxO0zzGR5yRjdgde8xMrDLUgu",
+    "name": "Tj/testing/alt",
+    "staff": "no",
+    "role": "member",
+    "mrlol": "na",
+    "level": "1",
+    "mute": "none",
+    "ban": "none",
+    "roomAllowed": [
+      "public"
+    ]
+  },
+  {
+    "username": "testing UNIT",
+    "email": "b@gmail.com",
+    "password": "$2a$10$4zE8OBO4OkaMMgIE0SdaGuhQSsU/eBbEpuGxS02BcFPGuIHWz.L52",
+    "name": "s3tv",
+    "staff": "no",
+    "role": "member",
+    "mrlol": "na",
+    "level": "1",
+    "mute": "none",
+    "ban": "none",
+    "id": "efux-n8-9x-kd-1l1aooyq7i-4c-we-pe-xcyekmgdtt-sv-59-lv-ow59w7j260-d8-eh-o1-lk1qfczice-4t-sq-0a-8ap1orh2hz-c1-qo-6g-v4v2xxh7wi-f1-no-z4-7pqs1psqyn-my-66-dh-u1l9r5",
+    "roomAllowed": [
+      "public"
+    ]
+  },
+  {
+    "username": "Magic",
+    "email": "hogrider0526@gmail.com",
+    "password": "$2a$10$lS.R0C17HNoLqjwIEJbSpO4rUchCHliK.CM.h9xuE11hGJ8gOYRdO",
+    "name": "Magic",
+    "staff": "no",
+    "role": "member",
+    "mrlol": "na",
+    "level": "1",
+    "mute": "none",
+    "ban": "none",
+    "id": "qm93-zw-qm-vi-9izdyb7e6a-8w-o0-di-ick8e2sche-1u-vl-d5-2zao3v33wx-5n-5w-aa-xxb0lpm12z-t7-mr-1p-s7eivodfse-n4-lx-0l-mn25njer4f-v5-ne-dp-zphm8jhlip-m7-7x-u5-i9kzgt",
+    "roomAllowed": [
+      "public"
+    ]
+  }
+]

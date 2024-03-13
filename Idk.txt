@@ -1,0 +1,53 @@
+
+   switch(idrole) {
+     case "Owner": 
+       numrole = 6
+       break;
+     case "Co-Owner":
+       numrole = 5
+       break;
+     case "Head Administrator":
+       numrole = 4
+       break;
+     case "Administrator":
+       numrole = 3
+       break;
+     case "Senior Staff": 
+       numrole = 2
+       break;
+     case "Staff": 
+       numrole = 1
+       break;
+     default:
+       numrole = 0
+       break;
+       
+   switch(role) {
+     case "Owner": 
+       roleNum = 6
+       break;
+     case "Co-Owner":
+       roleNum = 5
+       break;
+     case "Head Administrator":
+       roleNum = 4
+       break;
+     case "Administrator":
+       roleNum = 3
+       break;
+     case "Senior Staff": 
+       roleNum = 2
+       break;
+     case "Staff": 
+       roleNum = 1
+       break;
+     default:
+       roleNum = 0
+       break;
+  }
+    numrole = Number(numrole)
+    roleNum = Number(roleNum)
+    
+https://lunarlearningcenter.space
+    
+    //https://blocked.goguardian.com/?ctx=YWZpPTIwNTQzODkmYXBpPTkwMDUxJm9pPTI4OTQ5MzYxNTgzJm91PWh0dHBzJTNBJTJGJTJGcG9ydGFsLml0dXRvcmluZy54eXolMkYmcnM9QURNSU5fU0lURV9DQVRFR09SWV9GSUxURVImc2NpPTIyJnN0PWNocm9taXVtLW0mdj0x&sum=bbae8f06
