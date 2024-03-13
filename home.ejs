@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3447/3447513.png">
+  <title>Chat</title>
+  <style>
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/whiteBack.jpeg?v=1705102845912');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    #messages {
+      display: block;
+      width: 1000px;
+      height: 500px;
+      border-style: solid;
+      border-width: 2px;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      background-color: white;
+      overflow-x: hidden;
+      position: absolute;
+      left: 50px;
+    }
+    #report-box {
+      display: none;
+      width: 400px;
+      height: 500px;
+      border-style: solid;
+      border-width: 2px;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      background-color: white;
+      position: absolute; 
+      right: 10px;
+      top: 10px;
+    }
+    
+    #help-box {
+      display: none;
+      width: 400px;
+      height: 500px;
+      border-style: solid;
+      border-width: 2px;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      background-color: white;
+      position: absolute; 
+      right: 10px;
+      top: 10px;
+    }
+
+    h3,
+    p {
+      margin: 0;
+    }
+
+    #signIn {
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      width: 800px;
+      height: 400px;
+      background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/1e704eaa-e913-4447-a1f3-7c5420246ad3.image.jpeg?v=1705103717960');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #IDlogin {
+      font-family: Georgia, serif;
+      cursor: default;
+      position: absolute;
+      top: 50px;
+      left: 445px;
+      color: red;
+    }
+    
+    #admin-buttons-help {
+      display: none;
+      position: absolute;
+      top: 510px;
+      right: 68px;
+    }
+    #admin-buttons-help button {
+      width: 150px;
+    }
+    #report-red-alert {
+      
+    }
+    #help-red-alert {
+      
+    }
+  </style>
+</head>
+
+<body>
+  <iframe id="messages"></iframe>
+  <div id="admin-buttons-help"><button onclick="openreports()">Reports</button><a id="report-red-alert">🟥</a> <button onclick="openhelps()">Help Requested</button><a id="help-red-alert">🟥</a></div>
+  <div id="report-box"></div>
+  <div id="help-box"></div>
+  
+
+  <div>
+    <input id="inputMessage" minlength="1" autocomplete="off" type="text" style="position: absolute; left: 50px; top: 515px" />
+    <button onclick="checkMesage()" type="submit" value="submit" id="send" style="position: absolute; left: 260px; top: 515px; ">Send</button>
+    
+    <input id="commandPROMPT" type="text" style="display: none; position: absolute; left: 50px; top: 535px">
+    <button onclick="showidandcode()" style="position: absolute; left: 320px; top: 515px; ">Show Room ID & Code</button>
+
+    <br>
+    <br>
+  </div>
+  
+<!--
+    <% const target = {}; %>
+    <% const handler = {}; %>
+    <% const proxy = new Proxy(target, handler); %>
+    
+    <script>
+        const isProxy = <%= JSON.stringify(Proxy.revocable(proxy, handler).proxy === proxy) %>;
+        if (isProxy) {
+            alert("The variable is a proxy!");
+        } else {
+            alert("The variable is not a proxy!");
+        }
+    </script>
+  -->
+  
+  <script>
+
+  </script>
+
+
+  <style>
+    body {
+      background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/whiteBack.jpeg?v=1705102845912');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+  </style>
+
+  <style>
+
+
+    h3,
+    p {
+      margin: 0;
+    }
+
+    #signIn {
+      position: absolute;
+      display: none;
+      top: 100px;
+      left: 100px;
+      width: 800px;
+      height: 400px;
+      background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/1e704eaa-e913-4447-a1f3-7c5420246ad3.image.jpeg?v=1705103717960');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #IDlogin {
+      font-family: Georgia, serif;
+      cursor: default;
+      position: absolute;
+      top: 50px;
+      left: 445px;
+      color: red;
+    }
+  </style>
+
+  <div id="signIn">
+    
+    
+
+    <h1 style="position: absolute; top: 30px; left: 40px;">Login:</h1>
+  
+    <label for="username" style="position: absolute; top: 90px; left: 50px;">Username:</label>
+    <input type="text" id="username" name="username" style="position: absolute; top: 110px; left: 50px;" required>
+    <br>
+  
+    <label for="password" style="position: absolute; top: 155px; left: 50px;">Password:</label>
+    <input type="password" id="password" name="password" style="position: absolute; top: 180px; left: 50px;" required>
+    <br>
+  
+    <input type="text" id="roomId" name="roomId" style="display: none;">
+  
+    <button onclick="signIn()" id="loginbuttom" style="position: absolute; top: 210px; left: 50px;">Login</button>
+
+
+    <a style="position: absolute; top: 375px; left: 90px; color: black;">Sign Up </a><a href="https://random-website-chat.glitch.me/sign-up" target="_blank" style="color: red; position: absolute; top: 375px; left: 150px;">Here</a>
+  </div>
+
+  <style>
+    #joinRoomRequesr {
+      display: none;
+      position: absolute; 
+      width: 300px;
+      height: 300px;
+      background-color: red;
+      top: 50%; 
+      left: 50%; 
+      transform: translate(-50%, -50%); 
+      z-index: 9999; 
+      background-image: url("https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/dkjjownload.jpg?v=1709729953889");
+      background-size: 300px 300px;
+    }
+  </style>
+  
+  
+  <div id="joinRoomRequesr">
+    <a><h2>‎ Room ID join:</h2>‎ <input id="joirnrwkismresurJD"><br><h2>‎ Room Code:</h2>‎ <input id="ijrinnicode"><br><br>‎ <button onclick="showclkdetojin()">Request Room </button></a>
+    <h2 style="position: absolute; top: -40px; right: 0px; font-size: 35px;" onclick="hufslabfwr()">x</h2>
+    <div class="loader loader--style2" title="1" style="position: absolute; left: 140px; top: 190px; display: none;" id='Loadingspiinner'>
+    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="40px" height="40px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+    <path fill="#000" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+    <animateTransform attributeType="xml"
+      attributeName="transform"
+      type="rotate"
+      from="0 25 25"
+      to="360 25 25"
+      dur="0.6s"
+      repeatCount="indefinite"/>
+    </path>
+  </svg>
+</div>
+    <img id="correctloadfed" style="position: absolute; width: 33px; height: 32px; left: 141px; top: 193px; display: none;" src="https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/1024px-Font_Awesome_5_solid_check-circle.svg.png?v=1709903042331">
+    <img id="wordloadfed" style="position: absolute; width: 33px; height: 32px; left: 141px; top: 193px; display: none;" src="https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/x-circle-icon-512x512-w8xqelua.png?v=1709903413585">
+    <img id="alredifhtindin" style="position: absolute; width: 33px; height: 32px; left: 141px; top: 193px; display: none;" src="https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/dash_circle_fill_icon_159602.png?v=1710260301918">
+  </div>
+
+  <div id="codenadid" style="width: 700px; height: 100px; background-color: gray; position: absolute; display: none; top: 50px; left: 400px;">
+    
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+<script src="/pagescript.js"></script>
+
+
+  
+  <div id="dropDownAlert">
+    <h1>Website Updating. </h1>
+    <h1>Please Stand By.</h1></div>
+  <div id="drowndoenlaertforuserswarning"></div>
+<style>
+#dropDownAlert {
+  position: absolute;
+  top: -400px;
+  left: 30%;
+  border: solid 1px;
+  width: 40%;
+  padding: 2em;
+  background-color: white;
+}
+#drowndoenlaertforuserswarning {
+  position: absolute;
+  top: -400px;
+  left: 30%;
+  border: solid 1px;
+  width: 40%;
+  padding: 2em;
+  background-color: white;
+}
+@keyframes drop {
+  0% { opacity: 0; }
+  100% { transform: translateY(405px); }
+}
+@keyframes up {
+  0% { opacity: 0; }
+  100% { transform: translateY(0px); }
+}
+
+</style>
+
+
+  
+  
+  <div id="textColor">
+    <h2 onclick="Colorclose()" style="position: absolute; top: -20px; left: 0px">X</h2>
+    <h1 style="position: absolute; left: 50px;">Text Color</h1>
+    <input id="textInput" type="text" style="position: absolute; top: 50px; left: 50px; width: 200px; height: 40px; font-size: 20px;">
+    <button id="textSubmit" onclick="textColorButtonSubmit()" style="position: absolute; top: 105px; left: 50px; width: 150px; height: 40px; font-size: 20px;">Submit</button>
+  </div>
+
+ 
+  <style>
+  #textColor {
+    width: 400px;
+    height: 200px;
+    background-color: hsl(0, 0%, 80%);
+    position: absolute;
+    top: 100px;
+    left: 600px;
+    display: none;
+  }
+  </style>
+
+
+
+<div id="BackColor" style="display: none;">
+  <a onclick="backClose()" style="font-size: 30px; color: black;">X</a>
+  <a onclick="colorBack = backCyan; changevackground() " style="font-size: 30px; position: absolute; top: 50px; left: 50px; border: 2px; padding: 5px 70px; background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/b192b091-d02b-43e9-9492-ef8411fd2dae.image.png?v=1705105709545'); color: white;">Cyan</a>
+  <a onclick="colorBack = backWhite; changevackground()" style="font-size: 30px; position: absolute; top: 100px; left: 50px; border: 2px; padding: 5px 65px; background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/8dd8ff38-f4f3-4896-8651-191210828a5b.image.jpeg?v=1705503863472'); color: white;">White</a>
+  <a onclick="colorBack = rainbow0; changevackground() " style="font-size: 30px; position: absolute; top: 150px; left: 50px; border: 2px; padding: 5px 50px; background-image: url('https://images.freeimages.com/365/images/previews/f2f/abstract-rainbow-colors-wave-background-vector-illustration-26037.jpg'); color: white;">Rainbow</a>
+  <a onclick="colorBack = img1; changevackground() " style="font-size: 30px; position: absolute; top: 200px; left: 50px; border: 2px; padding: 5px 55px; background-image: url('https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/IMG_0751.webp?v=1706060667907'); color: white;">Galaxy</a>
+  <a onclick="colorBack = img2; changevackground() " style="font-size: 30px; position: absolute; top: 250px; left: 50px; border: 2px; padding: 5px 70px; background-image: url('https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/IMG_0755.jpeg?v=1706060640014'); color: white;">Space</a>
+  <a onclick="colorBack = img3; changevackground() " style="font-size: 30px; position: absolute; top: 300px; left: 50px; border: 2px; padding: 5px 35px; background-image: url('https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/IMG_0754.jpeg?v=1706060648723'); color: white;">Black/Sliver</a>
+  <a onclick="colorBack = img4; changevackground() " style="font-size: 30px; position: absolute; top: 350px; left: 50px; border: 2px; padding: 5px 40px; background-image: url('https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/IMG_0753.jpeg?v=1706060652630'); color: white;">Black/Gold</a>
+  <a onclick="colorBack = img5; changevackground() " style="font-size: 30px; position: absolute; top: 400px; left: 50px; border: 2px; padding: 5px 40px; background-image: url('https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/IMG_0752.jpeg?v=1706060658050'); color: white;">Black/Gold</a>
+  
+
+</div>
+
+
+<style>
+  #BackColor {
+    width: 300px;
+    height: 500px;
+    background-color: hsl(0, 0%, 80%);
+    position: absolute;
+    top: 100px;
+    left: 600px
+  }
+</style>
+
+  
+
+<div id="menu-box" style="display: none;">
+  <br>
+  <br>
+  <br>
+  <div class="dropdown" style="position: relative;">
+    <button class="dropbtn" style="width: 300px;" onclick="toggleDropdown()">Join Rooms</button>
+    <div id="roomList" class="dropdown-content" style="position: absolute; top: 100%; left: 0; width: 300px; display: none;">
+
+    </div>
+    
+    <button id="reqeustrooommm" onclick="newrooom()" style="display: block; position: absolute; top: calc(100% + 1px); left: 0; width: 300px; height: 55px; background-color: hsl(242, 42%, 42%); color: white; font-size: 16px;">New Room</button>
+    
+    <button id="joinroomrequsrt" onclick="openuikoinrfoom()" style="display: block; position: absolute; top: calc(100% + 56px); left: 0; width: 300px; height: 55px; background-color: hsl(242, 42%, 42%); color: white; font-size: 16px;">Join Room</button>
+   
+    <button id="nebukasearhc" onclick="openSearch()" style="display: block; position: absolute; top: calc(100% + 111px); left: 0; width: 300px; height: 55px; background-color: hsl(242, 42%, 42%); color: white; font-size: 16px;">Search</button>
+    
+    <button onclick="backCoolor()" id="backidkromsj" style="position: absolute; top: calc(100% + 166px); left: 0; width: 300px; height: 55px; background-color: hsl(242, 42%, 42%); color: white; font-size: 16px;">Background Color</button>
+
+    <button onclick="tsxtColorFun()" id="dijhuy" style="position: absolute; top: calc(100% + 221px); left: 0; width: 300px; height: 55px; background-color: hsl(242, 42%, 42%); color: white; font-size: 16px;">Text Color</button>
+
+    <button onclick="cannel()" id="oiuytrfghjihu" style="position: absolute; top: calc(100% + 276px); left: 0; width: 300px; height: 55px; background-color: hsl(242, 42%, 42%); color: white; font-size: 16px;">Sign Out</button>
+  </div>
+</div>
+
+  
+  <img
+  src="https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/e623d636-26d0-4250-9720-eff8403c3aa5.image.png?v=1708954248279"
+  style="position: absolute; top: -20px; left: -20px; border-radius: 10px; padding: 20px; border-radius: 15px 15px; width: 50px; hieght 15px;"
+  onclick="menubox()"
+  >
+
+  
+  <style>
+    #menu-join {
+      position: absolute;
+      top: 100px;
+      left: 0px;
+      width: 300px;
+      list-style-type: none;
+      padding: 0;
+    }
+    #menu-box {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 300px;
+      height: 100vh;
+      background-color: hsl(205, 28%, 38%);
+    }
+    
+    .dropdown {
+
+}
+    
+    
+/* Style the dropdown button */
+.dropbtn {
+  background-color: hsl(242, 42%, 42%);
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links when clicked */
+.dropdown-content a:active {
+  background-color: hsl(242, 42%, 42%);
+}
+
+/* Show the dropdown menu when the dropdown button is clicked */
+.dropdown.active .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown.active .dropbtn {
+  background-color: hsl(242, 42%, 42%);
+}
+
+  </style>
+  
+
+  
+  <style>
+    #box {
+  position: absolute;
+   }
+    
+    #set-img {
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+  
+  <style>
+    #div-report {
+      display: none;
+      position: absolute;
+      top: 150px;
+      left: 300px;
+      width: 700px;
+      height: 450px;
+      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnQ2pjviINEs5XpJ3alyftlXPSKSsU0kjH5Q&usqp=CAU');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+  
+  <h2 id="report-click" onclick="reshow()" style="color: red; position: absolute; left: 940px; top: 490px;">Report</h2>
+
+  
+<div id="div-report">
+  <h1 onclick="rehide()" style="display: inline; padding: 5px; font-weight: bold; position: absolute; top: -10px; right: -5px;">X</h1>
+  
+  <h1 style="position: absolute; left: 15px;">Report</h1>
+
+  <h2 style="position: absolute; left: 15px; top: 50px;">Reporting Name:</h2>
+  <input id="report-name" style="position: absolute; left: 15px; top: 100px;" type="text">
+
+  <h2 style="position: absolute; top: 120px; left: 15px;">Reason:</h2>
+  <input id="report-message" style="position: absolute; top: 170px; left: 15px" type="text">
+  
+  <button onclick="report()" style="position: absolute; top: 200px; left: 15px">Submit</button>
+  
+  <button onclick="requestasminrooom()" style="position: absolute; bottom: 0px;">Talk to a Staff</button>
+  
+  <a style="color: red; position: absolute; bottom: 0px; left: 100px;">*Spamming could cause mute or ban up to a month.</a>
+</div>
+
+
+   <script src="https://cdn.jsdelivr.net/npm/quagga"></script>
+
+  <script>
+    //javascript:(function () { var script = document.createElement('script'); script.src='//cdn.jsdelivr.net/npm/eruda'; document.body.appendChild(script); script.onload = function () { eruda.init() } })();
+  </script>
+
+<div id='ban'>
+   <div style='
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    color: red;
+    '>
+     <h1>You are currently Banned</h1>
+     <h1 style="color: white">If you would like to repel</h1>
+     <h1 style="color: white">Visit <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3jPpqT4y83ATgK7XQzpyGE8kTR3LOcsVFr6TqAO1uA8QyKQ/viewform?usp=sf_link" style="text-decoration: none; color: cyan;">Here</a></h1>
+
+     </div>
+</div>
+  
+<style>
+  #ban {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/ab840343-3541-4937-8d03-39ad1c1acb8d.image.jpeg?v=1707088216359');
+    background-size: cover;
+    background-position: center;
+    display: none;
+  }
+  .newstext {
+    cursor: default;
+  }
+  #newspage {
+    background-image: url("https://cdn.glitch.global/6c582ebc-ba05-4552-ab27-941cebe0356e/dkjjownload.jpg?v=1709729953889");
+    background-size: 600px 600px;
+  }
+</style>
+  
+  <script>
+    //6
+    var currenetitnfi = 6.5
+    var checkedlestnews = localStorage.getItem("news")
+    checkedlestnews = Number(checkedlestnews)
+    
+    setTimeout(newsnumber, 10)
+    
+    function newsnumber() {
+      if(checkedlestnews === currenetitnfi) {
+
+      } else {
+        document.getElementById('newspage').style.display = "block"
+        localStorage.setItem('news', currenetitnfi)
+      }
+    }
+  </script>
+
+
+  <div id="newspage" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; /* Set a high z-index value */ padding: 20px; border: 1px solid black; width: 500px; height: 500px;">
+    <div class="newstext">
+      
+    <h1> New Update</h1>
+    <br>
+    <h3>-Joining Other Rooms!</h3>
+    <br>
+    <br>
+    <h1> In Coming Updates</h1>
+    <h3>-Offline Ban & Muting</h3>
+    <br>
+    <br>
+    <h1> Bugs</h1>
+    <h3>-Messages Error<br>-Login Issues</h3>
+    
+      
+    </div>
+
+    
+    <h1 style="position: absolute; top: -5px; right: 0px; cursor: pointer;" onclick="document.getElementById('newspage').style.display = 'none';">X</h1>
+  </div>
+
+  
+</body>
+
+
+</html>

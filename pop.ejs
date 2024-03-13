@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3447/3447513.png">
+  <title>Privite Chat</title>
+  <style>
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/whiteBack.jpeg?v=1705102845912');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    h3,
+    p {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body onload="checIframe()" id="bodyshit">
+<div id="bloddyHell">
+  
+
+
+
+  <style>
+    body {
+      background-image: url('https://cdn.glitch.global/91ab612a-dd07-4fdd-b52f-e5ddb80b0ace/whiteBack.jpeg?v=1705102845912');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+  </style>
+
+  <style>
+    h3,
+    p {
+      margin: 0;
+    }
+  </style>
+
+
+
+  
+   <script>
+     let myWindow
+     
+      var username
+      var password
+
+function checIframe() {
+  if ( window !== window.parent ) 
+  {
+window.close();
+    console.log(true)
+  } 
+  else 
+  {     
+window.close();
+    console.log(false)
+  }
+}
+     
+     
+     
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+<script>
+const socket = io({
+query: {
+roomId: window.location.pathname.substr(1),
+},
+})
+
+
+
+  
+let nameDisplay; // Declare nameDisplay in a higher scope
+
+  
+  function joinRooom(altroom) {
+    console.log(names)
+    socket.emit("sendnewRooom", { link: altroom, name: names })
+  }
+
+  
+     socket.on('name', (receivedNameDisplay) => {
+         nameDisplay = receivedNameDisplay;
+       });
+  
+
+  
+socket.on('all messages iframe', function (allMessages) {
+    const messagesList = document.querySelector('#messages');
+    messagesList.innerHTML = ''; // Clear previous messages
+
+    // Function to check if the message is a link and if it's an image
+    const processLink = (message) => {
+        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'bmp', 'webp'];
+        const linkRegex = /https?:\/\/\S+/g;
+        const videoExt = ['mp4']
+
+        return message.replace(linkRegex, (link) => {
+            if (link.startsWith('data:')) {
+                // It's a data URI link
+                return `<img src="${link}" alt="Custom Alt Text" style="max-width: 500px; max-height: 250px;">`;
+            }
+
+            // Extract the extension from the link
+            const extension = link.split('.').pop().toLowerCase();
+
+            if (imageExtensions.includes(extension)) {
+                // It's an image link
+                return `<img src="${link}" alt="Image">`;
+            } else if(videoExt.includes(extension)){
+                return `<video width="300" height="200" controls><source src="${link}" type="video/mp4"></video>`;
+            } else {
+                // It's a regular link
+                return `<a href="${link}" target="_blank">${link}</a>`;
+            }
+        });
+    };
+  
+  
+  
+    allMessages.forEach(function (msg, index) {
+        const li = document.createElement('p');
+
+        if (index % 2 === 0) {
+            li.innerHTML = processLink(msg) + ":";
+    li.className = "message-text";
+        } else {
+            li.innerHTML = processLink(msg);
+    li.className = "message-text";
+        }
+
+        messagesList.appendChild(li);
+
+        // Add margin-bottom for spacing between messages
+        li.style.marginBottom = "0px";
+    });
+
+    const messageElements = document.querySelectorAll('#message-text');
+    messageElements.forEach(element => {
+        element.style.color = textcolor;
+    });
+
+    setTimeout(autoScroll, 500);
+});
+  
+  // 
+
+  
+     var numrole
+    var roleNum
+    
+
+
+// Emit 'left' event when the page is about to be unloaded
+window.addEventListener('beforeunload', function (event) {
+    socket.emit('left', { name: username, roomId: window.location.pathname.substr(1) });
+});
+
+
+
+socket.on('chat message', (message) => {
+    const h3 = document.createElement('p');
+    const li = document.createElement('p');
+    const tchat = ""
+
+
+    const processLink = (message) => {
+        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'bmp', 'webp'];
+        const linkRegex = /https?:\/\/\S+/g;
+        const videoExt = ['mp4']
+
+        return message.replace(linkRegex, (link) => {
+            
+           link.toString()
+           
+          if (link.startsWith('data:')) {
+                // It's a data URI link
+                return `<img src="${link}" alt="Custom Alt Text" style="max-width: 500px; max-height: 250px;">`;
+            }
+
+            // Extract the extension from the link
+            const extension = link.split('.').pop().toLowerCase();
+
+            if (imageExtensions.includes(extension)) {
+                // It's an image link
+                return `<img src="${link}" alt="Image">`;
+            } else if(videoExt.includes(extension)){
+                return `<video width="300" height="200" controls><source src="${link}" type="video/mp4"></video>`;
+            } else {
+                // It's a regular link
+                return `<a href="${link}" target="_blank">${link}</a>`;
+            }
+        });
+    };
+  
+
+    h3.textContent = nameDisplay + ":";
+    li.innerHTML = message;
+
+    h3.className = "message-text";
+    li.className = "message-text";
+
+    document.getElementById('messages').appendChild(h3);
+    document.getElementById('messages').appendChild(li);
+
+    const b1 = document.createElement('br');
+    b1.style.lineHeight = "0.15";
+
+    setTimeout(autoScroll, 500);
+});
+
+
+
+
+  
+  
+  
+  var muted
+  
+  
+  
+    function autoScroll() {
+     const messagesContainer = document.getElementById('messages');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    
+     }
+
+  
+
+  socket.on('update', (data) => {
+    const dropDownAlert = document.getElementById('dropDownAlert');
+    
+    dropDownAlert.style.animation = "drop 2s ease forwards";
+    dropDownAlert.style.animationiterationcount = 'one';
+
+    setTimeout(() => {
+      // Reset the animation property after a delay (2 seconds in this case)
+      reload();
+    }, 7000);
+  });
+
+
+function reload() {
+  location.reload();
+}
+
+  
+  
+  
+  
+  function getCookie(cookieName) {
+  const name = cookieName + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const cookieArray = decodedCookie.split(';');
+  for(let i = 0; i < cookieArray.length; i++) {
+    let cookie = cookieArray[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1);
+    }
+    if (cookie.indexOf(name) === 0) {
+      setTimeout(log, 1000)
+      return cookie.substring(name.length, cookie.length);
+    }
+  }
+  return "";
+}
+  
+  
+var idCookie = getCookie("id");
+  
+  function log() {
+        socket.emit("login re", { cookie: idCookie, roomId: window.location.pathname.substr(1), id: id })
+  }
+    
+    
+    
+socket.on("loggginn", function (data) {
+  console.log(":::")
+    if(data.id === id) {
+      names = data.name
+      level = data.level
+      staffs = data.staff
+      role = data.role
+      mrlol = data.mrlol
+      level = data.level
+      ban = data.ban
+      mute = data.mute
+      roomAllowed = data.roomAllowed
+
+     if(role === "Owner") {
+
+     }
+    }
+})
+  
+  
+
+  
+  //
+</script>
+
+
+  
+  <div id="dropDownAlert">
+    <h1>Website Updating. </h1>
+    <h1>Please Stand By.</h1></div>
+
+<style>
+#dropDownAlert {
+  position: absolute;
+  top: -400px;
+  left: 30%;
+  border: solid 1px;
+  width: 40%;
+  padding: 2em;
+  background-color: white;
+}
+
+@keyframes drop {
+  0% { opacity: 0; }
+  100% { transform: translateY(405px); }
+}
+</style>
+
+
+  
+  
+  <script>
+
+  
+         var textColors;
+        var role;
+         var levels;
+        var mrlol;
+        var staff;
+         var ban;
+       var notallowed;
+      var openwin;
+     var username;
+    var password;
+  var staffs
+     var textColor;
+    var ban
+    var names
+
+    
+    
+
+  </script>
+  
+
+ <div id="result" style="display: hidden;"></div>
+ 
+  <script>
+
+  </script>
+  
+    <script>
+    let guid = () => {
+    let s4 = () => {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(36)
+            .substring(2);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    }
+    var id = guid() + guid() + guid() + guid() + guid() + guid()
+  </script>
+
+
+
+  
+
+  
+  <div id="messages"></div>
+  
+  <style>
+      #messages {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      border-style: solid;
+      border-width: 2px;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      background-color: white;
+    }
+  </style>
+
+  </div>
+</body>
+
+
+</html>
