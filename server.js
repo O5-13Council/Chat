@@ -222,7 +222,7 @@ app.post("/signup", async (req, res) => {
 
 
 app.get("/solo", function (req, res) {
-  res.render("solo");
+  res.render("solos");
 });
 
 app.get("/chat/:roomId", function (req, res) {
